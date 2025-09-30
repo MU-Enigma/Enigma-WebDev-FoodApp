@@ -2,12 +2,17 @@
 
 A modern food ordering application built with React and Express.js. This project demonstrates full-stack development with real-time data fetching, form handling, and order management.
 
-## 📺 Demo Video
+## 📺 Target UI Demo
 
-> **Note**: The demo video (`Screen Recording 2025-09-30 at 14.19.44.mov`) is too large (47MB) to commit to GitHub. Consider:
-> - Uploading to YouTube/Vimeo and linking here
-> - Using Git LFS for large files
-> - Compressing the video or storing it elsewhere
+**Watch this video to see exactly what you need to build:**
+
+[Screen Recording 2025-09-30 at 14.19.44.mov](./Screen%20Recording%202025-09-30%20at%2014.19.44.mov)
+
+> ⚠️ **Important**: Your final implementation should match the UI and functionality shown in this video exactly. Use this as your reference for:
+> - Visual design and layout
+> - User interactions and flow
+> - Features and functionality
+> - Overall user experience
 
 ## 🛠️ Prerequisites
 
@@ -75,6 +80,8 @@ npm run dev
 App runs on: `http://localhost:5173`
 
 ## 🎯 Features to Implement
+
+**🎥 WATCH THE VIDEO FIRST!** Your implementation must match exactly what's shown in the demo video above.
 
 Based on the demo video, implement the following features:
 
