@@ -6,6 +6,10 @@ A modern food ordering application built with React and Express.js. This project
 
 **Watch this video to see exactly what you need to build:**
 
+**Option 1: MP4 (Recommended - Better GitHub compatibility):**  
+[demo-video.mp4](./demo-video.mp4)
+
+**Option 2: Original MOV file:**  
 [Screen Recording 2025-09-30 at 14.19.44.mov](./Screen%20Recording%202025-09-30%20at%2014.19.44.mov)
 
 > ⚠️ **Important**: Your final implementation should match the UI and functionality shown in this video exactly. Use this as your reference for:
@@ -13,6 +17,8 @@ A modern food ordering application built with React and Express.js. This project
 > - User interactions and flow
 > - Features and functionality
 > - Overall user experience
+>
+> 💡 **Tip**: The MP4 version (9.6MB) is much smaller than the MOV (47MB) and should display better on GitHub.
 
 ## 🛠️ Prerequisites
 
@@ -81,7 +87,9 @@ App runs on: `http://localhost:5173`
 
 ## 🎯 Features to Implement
 
-**🎥 WATCH THE VIDEO FIRST!** Your implementation must match exactly what's shown in the demo video above.
+**Scope:** You do not have to rebuild the entire app. Implement any feature(s) from the video. If you can replicate the whole project, that's great — but partial feature implementations are welcome.
+
+**🎥 WATCH THE VIDEO FIRST!** Your implementation should align with the UI/UX shown in the demo video above.
 
 Based on the demo video, implement the following features:
 
@@ -152,6 +160,22 @@ CSS styles are **already provided** in `src/index.css`. Focus on:
 - Using existing CSS classes
 - Maintaining the provided design system
 - Adding responsive touches if needed
+
+## 🧭 Working with Git and avoiding conflicts
+
+This repository may receive updates while you work. To minimize conflicts:
+
+- Fork this repo and create a feature branch for your work.
+- Regularly sync with upstream main:
+  - git remote add upstream https://github.com/Aneeshie/Enigma-WebDev-FoodApp.git
+  - git fetch upstream
+  - git rebase upstream/main
+- Resolve conflicts locally, run the app, and re-test.
+- If you rebased, push with --force-with-lease to your forked branch.
+- Keep PRs focused and small where possible.
+- Check git status often before committing.
+
+Once your PR is opened, the maintainer will review and merge or request changes.
 
 ## 📝 Implementation Tips
 
