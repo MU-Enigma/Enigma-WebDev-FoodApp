@@ -9,9 +9,6 @@ A modern food ordering application built with React and Express.js. This project
 **Option 1: MP4 (Recommended - Better GitHub compatibility):**  
 [demo-video.mp4](./demo-video.mp4)
 
-**Option 2: Original MOV file:**  
-[Screen Recording 2025-09-30 at 14.19.44.mov](./Screen%20Recording%202025-09-30%20at%2014.19.44.mov)
-
 > ⚠️ **Important**: Your final implementation should match the UI and functionality shown in this video exactly. Use this as your reference for:
 > - Visual design and layout
 > - User interactions and flow
