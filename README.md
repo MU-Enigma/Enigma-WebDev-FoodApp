@@ -14,7 +14,6 @@ A modern food ordering application built with React and Express.js. This project
 > - User interactions and flow
 > - Features and functionality
 > - Overall user experience
->
 
 
 ## 🛠️ Prerequisites
