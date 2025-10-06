@@ -1,6 +1,6 @@
 # 🍕 Food Order React App
 
-A modern food ordering application built with React and Express.js. This project demonstrates full-stack development with real-time data fetching, form handling, and order management.
+A modern food ordering application built with React and Express.js. This project demonstrates full-stack development with real-time data fetching, form handling, and order management. (WE HAVE PROVIDED YOU THE CSS AND BACKEND CODE.)
 
 ## 📺 Target UI Demo
 
