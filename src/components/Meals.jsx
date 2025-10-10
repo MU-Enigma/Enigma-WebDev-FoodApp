@@ -36,7 +36,6 @@ const Meals = () => {
     return (
       <div className="error">
         <h2>Error!</h2>
-        <p>{error}</p>
       </div>
     );
   }
