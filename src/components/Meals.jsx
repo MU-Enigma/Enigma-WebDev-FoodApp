@@ -13,7 +13,6 @@ const Meals = () => {
         const response = await fetch("http://localhost:3000/meals");
 
         if (!response.ok) {
-          // A 404(or anything similar) response is truthy, so check .ok to catch HTTP errors.
           throw new Error("Failed to fetch meals.");
         }
 
