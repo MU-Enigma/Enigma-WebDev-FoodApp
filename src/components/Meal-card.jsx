@@ -1,4 +1,9 @@
+import { useContext } from "react";
+import { CartContext } from "../CartContext.jsx";
+
 const MealCard = ({meal}) => {
+  const { addItem } = useContext(CartContext);
+  
   return (
       <li className="meal-item">
         <article>
@@ -9,7 +14,9 @@ const MealCard = ({meal}) => {
             <p className="meal-item-description">{meal.description}</p>
           </div>
           <p className="meal-item-actions">
-            <button className="button">Add to Cart</button>
+            <button className="button" onClick={() => addItem(meal)}>
+              Add to Cart
+            </button>
           </p>
         </article>
       </li>

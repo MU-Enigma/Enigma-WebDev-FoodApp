@@ -3,7 +3,7 @@ import { CartContext } from "./CartContext.jsx";
 import Meals from "./components/Meals.jsx";
 import CartModal from "./components/CartModal.jsx";
 import "./index.css";
-import logo from "./assets/logo.png";
+import logo from "./assets/logo.jpg";
 
 function App() {
   const { items } = useContext(CartContext);

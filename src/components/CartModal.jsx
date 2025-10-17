@@ -11,44 +11,47 @@ const CartModal = ({ onClose }) => {
     .toFixed(2);
 
   return (
-    <dialog className="modal" open>
-      {!checkoutMode ? (
-        <>
-          <h2>Your Cart</h2>
-          {items.length === 0 ? (
-            <p>Your cart is empty</p>
-          ) : (
-            <ul>
-              {items.map((item) => (
-                <li key={item.id} className="cart-item">
-                  <p>
-                    {item.name} x {item.quantity}
-                  </p>
-                  <div className="cart-item-actions">
-                    <button onClick={() => removeItem(item.id)}>-</button>
-                    <button onClick={() => addItem(item)}>+</button>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          )}
-          <div className="cart-total">Total: ${totalAmount}</div>
-
-          <div className="modal-actions">
-            <button className="text-button" onClick={onClose}>
-              Close
-            </button>
-            {items.length > 0 && (
-              <button className="button" onClick={() => setCheckoutMode(true)}>
-                Checkout
-              </button>
+    <>
+      <div className="modal-backdrop" onClick={onClose}></div>
+      
+      <dialog className="modal" open>
+        {!checkoutMode ? (
+          <>
+            <h2>Your Cart</h2>
+            {items.length === 0 ? (
+              <p>Your cart is empty</p>
+            ) : (
+              <ul>
+                {items.map((item) => (
+                  <li key={item.id} className="cart-item">
+                    <p>{item.name}</p>
+                    <div className="cart-item-actions">
+                      <button onClick={() => removeItem(item.id)}>-</button>
+                      <span className="quantity">{item.quantity}</span>
+                      <button onClick={() => addItem(item)}>+</button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             )}
-          </div>
-        </>
-      ) : (
-        <OrderForm onClose={onClose} />
-      )}
-    </dialog>
+            <div className="cart-total">Total: ${totalAmount}</div>
+
+            <div className="modal-actions">
+              <button className="text-button" onClick={onClose}>
+                Close
+              </button>
+              {items.length > 0 && (
+                <button className="button" onClick={() => setCheckoutMode(true)}>
+                  Checkout
+                </button>
+              )}
+            </div>
+          </>
+        ) : (
+          <OrderForm onClose={onClose} />
+        )}
+      </dialog>
+    </>
   );
 };
 
