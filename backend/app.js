@@ -7,6 +7,8 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use('/images', express.static('public/images'));
+
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -35,9 +37,11 @@ app.post('/orders', async (req, res) => {
     orderData.customer.name === null ||
     orderData.customer.name.trim() === '' ||
     orderData.customer.street === null ||
+    
     orderData.customer.street.trim() === '' ||
-    orderData.customer['postal-code'] === null ||
-    orderData.customer['postal-code'].trim() === '' ||
+    orderData.customer.postal === null ||
+    orderData.customer.postal.trim() === '' ||
+
     orderData.customer.city === null ||
     orderData.customer.city.trim() === ''
   ) {
@@ -66,4 +70,6 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log('✅ Server running on http://localhost:3000');
+});
