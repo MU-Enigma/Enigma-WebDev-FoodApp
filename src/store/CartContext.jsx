@@ -1,4 +1,5 @@
 import { createContext, useReducer, useEffect } from 'react';
+import { CART_ACTIONS } from '../constants/cartActions';
 
 // Create Context
 export const CartContext = createContext({
@@ -13,7 +14,7 @@ export const CartContext = createContext({
 // Reducer function to manage cart state
 function cartReducer(state, action) {
   switch (action.type) {
-    case 'ADD_ITEM': {
+    case CART_ACTIONS.ADD_ITEM: {
       const existingItemIndex = state.items.findIndex(
         (item) => item.id === action.item.id
       );
@@ -36,7 +37,7 @@ function cartReducer(state, action) {
       return { ...state, items: updatedItems };
     }
 
-    case 'REMOVE_ITEM': {
+    case CART_ACTIONS.REMOVE_ITEM: {
       const existingItemIndex = state.items.findIndex(
         (item) => item.id === action.id
       );
@@ -59,11 +60,11 @@ function cartReducer(state, action) {
       return { ...state, items: updatedItems };
     }
 
-    case 'CLEAR_CART': {
+    case CART_ACTIONS.CLEAR_CART: {
       return { ...state, items: [] };
     }
 
-    case 'LOAD_CART': {
+    case CART_ACTIONS.LOAD_CART: {
       return { ...state, items: action.items };
     }
 
@@ -82,9 +83,11 @@ export function CartContextProvider({ children }) {
     if (savedCart) {
       try {
         const parsedCart = JSON.parse(savedCart);
-        dispatchCartAction({ type: 'LOAD_CART', items: parsedCart });
+        dispatchCartAction({ type: CART_ACTIONS.LOAD_CART, items: parsedCart });
       } catch (error) {
         console.error('Error loading cart from localStorage:', error);
+        // Clear corrupted cart data from localStorage
+        localStorage.removeItem('cart');
       }
     }
   }, []);
@@ -99,15 +102,15 @@ export function CartContextProvider({ children }) {
   }, [cart.items]);
 
   function addItem(item) {
-    dispatchCartAction({ type: 'ADD_ITEM', item });
+    dispatchCartAction({ type: CART_ACTIONS.ADD_ITEM, item });
   }
 
   function removeItem(id) {
-    dispatchCartAction({ type: 'REMOVE_ITEM', id });
+    dispatchCartAction({ type: CART_ACTIONS.REMOVE_ITEM, id });
   }
 
   function clearCart() {
-    dispatchCartAction({ type: 'CLEAR_CART' });
+    dispatchCartAction({ type: CART_ACTIONS.CLEAR_CART });
   }
 
   function getTotalPrice() {

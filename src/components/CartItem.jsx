@@ -1,11 +1,12 @@
 import { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
+import { formatPrice, calculateItemTotal } from '../utils/cartUtils';
 
 export default function CartItem({ item }) {
   const { addItem, removeItem } = useContext(CartContext);
 
-  const formattedPrice = `$${parseFloat(item.price).toFixed(2)}`;
-  const itemTotal = `$${(parseFloat(item.price) * item.quantity).toFixed(2)}`;
+  const formattedPrice = formatPrice(item.price);
+  const itemTotal = calculateItemTotal(item.price, item.quantity);
 
   return (
     <li className="cart-item-side">
