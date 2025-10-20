@@ -7,7 +7,7 @@ function OrderForm({ onClose }) {
     name: "",
     email: "",
     street: "",
-    postal: "",
+    "postal-code": "",  // Changed from 'postal' to 'postal-code'
     city: "",
   });
 
@@ -17,20 +17,32 @@ function OrderForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const order = { items, customer };
+    
+    // Wrap in 'order' object to match backend expectation
+    const orderData = { 
+      order: {
+        items, 
+        customer 
+      }
+    };
+    
     try {
       const res = await fetch("http://localhost:3000/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(order),
+        body: JSON.stringify(orderData),  // Send wrapped order
       });
       if (res.ok) {
         alert("Order placed successfully!");
         clearCart();
         onClose();
+      } else {
+        const error = await res.json();
+        alert(`Error: ${error.message}`);
       }
     } catch (err) {
       console.error("Order failed:", err);
+      alert("Failed to connect to server");
     }
   };
 
@@ -52,7 +64,7 @@ function OrderForm({ onClose }) {
       <div className="control-row">
         <div className="control">
           <label>Postal Code</label>
-          <input name="postal" onChange={handleChange} required />
+          <input name="postal-code" onChange={handleChange} required />
         </div>
         <div className="control">
           <label>City</label>

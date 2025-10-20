@@ -48,7 +48,8 @@ const CartModal = ({ onClose }) => {
             </div>
           </>
         ) : (
-          <OrderForm onClose={onClose} />
+          <OrderForm onClose={() => { setCheckoutMode(false); onClose(); }} />
+
         )}
       </dialog>
     </>
