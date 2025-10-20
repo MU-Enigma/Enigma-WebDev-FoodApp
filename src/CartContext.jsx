@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer, useState, useMemo, useCallback } from "react";
 
 export const CartContext = createContext();
 
@@ -43,18 +43,18 @@ export function CartProvider({ children }) {
   const simulateDelay = (ms = 220) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
-  const addItem = async (item) => {
+  // memoized action helpers so references stay stable across renders
+  const addItem = useCallback(async (item) => {
     setLoading(true);
     try {
       dispatch({ type: "ADD_ITEM", item });
-      // small delay so UI shows loading feedback reliably
       await simulateDelay();
     } finally {
       setLoading(false);
     }
-  };
+  }, []); // simulateDelay and setLoading are stable
 
-  const removeItem = async (id) => {
+  const removeItem = useCallback(async (id) => {
     setLoading(true);
     try {
       dispatch({ type: "REMOVE_ITEM", id });
@@ -62,9 +62,9 @@ export function CartProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
-  const clearCart = async () => {
+  const clearCart = useCallback(async () => {
     setLoading(true);
     try {
       dispatch({ type: "CLEAR_CART" });
@@ -72,12 +72,34 @@ export function CartProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  // expensive derived values memoized
+  const totalQuantity = useMemo(
+    () => items.reduce((sum, it) => sum + (it.quantity || 0), 0),
+    [items]
+  );
+
+  const totalAmount = useMemo(() => {
+    console.log("Recomputing totalAmount");
+    return items.reduce((sum, it) => sum + (Number(it.price) || 0) * (it.quantity || 0), 0);
+  }, [items]);
+
+  const contextValue = useMemo(
+    () => ({
+      items,
+      addItem,
+      removeItem,
+      clearCart,
+      loading,
+      totalQuantity,
+      totalAmount,
+    }),
+    [items, addItem, removeItem, clearCart, loading, totalQuantity, totalAmount]
+  );
 
   return (
-    <CartContext.Provider
-      value={{ items, addItem, removeItem, clearCart, loading }}
-    >
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );
