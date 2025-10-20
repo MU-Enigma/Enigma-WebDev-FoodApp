@@ -1,13 +1,13 @@
-export default function Header() {
+export default function Navbar() {
   return (
-    <header id="main-header">
+    <nav id="main-header">
       <div id="title">
         <img src="/logo.jpg" alt="A restaurant" />
         <h1>ReactFood</h1>
       </div>
-      <nav>
+      <div>
         <button className="text-button">Cart (0)</button>
-      </nav>
-    </header>
+      </div>
+    </nav>
   );
 }
