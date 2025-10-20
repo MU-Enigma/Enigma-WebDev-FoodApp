@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar.jsx';
 import Meals from './components/Meals.jsx';
-import Particles from './components/Particles.jsx';
+import Particles from './components/particles-bg/Particles.jsx';
 
 function App() {
   return (
