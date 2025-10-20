@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
 
 const MealCard = ({ meal }) => {
-  // ✅ ADD: Get cart context
+  // MY ADDITION: Cart functionality
   const { addItem } = useContext(CartContext);
-
-  // ✅ ADD: Format price properly
+  
+  // MY ADDITION: Format price
   const formattedPrice = `$${parseFloat(meal.price).toFixed(2)}`;
-
-  // ✅ ADD: Handle add to cart
+  
+  // MY ADDITION: Handle add to cart
   function handleAddToCart() {
     addItem(meal);
   }
@@ -19,12 +19,12 @@ const MealCard = ({ meal }) => {
         <img src={`http://localhost:3000/${meal.image}`} alt={meal.name} />
         <div>
           <h3>{meal.name}</h3>
-          {/* ✅ CHANGE: Use formatted price */}
+          {/* MY CHANGE: Use formatted price */}
           <p className="meal-item-price">{formattedPrice}</p>
           <p className="meal-item-description">{meal.description}</p>
         </div>
         <p className="meal-item-actions">
-          {/* ✅ ADD: onClick handler */}
+          {/* MY CHANGE: Add onClick handler */}
           <button className="button" onClick={handleAddToCart}>
             Add to Cart
           </button>
@@ -32,6 +32,6 @@ const MealCard = ({ meal }) => {
       </article>
     </li>
   );
-};
+}
 
 export default MealCard;
