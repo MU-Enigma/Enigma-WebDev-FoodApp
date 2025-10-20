@@ -23,33 +23,30 @@ app.get('/meals', async (req, res) => {
 });
 
 app.post('/orders', async (req, res) => {
-  const orderData = req.body.order;
+  const orderData = req.body;  // Changed from req.body.order
 
-  if (orderData === null || orderData.items === null || orderData.items.length === 0) {
+  if (!orderData || !orderData.items || orderData.items.length === 0) {
     return res
       .status(400)
       .json({ message: 'Missing data.' });
-  }
+  }  // Added missing closing brace
 
   if (
-    orderData.customer.email === null ||
+    !orderData.customer.email ||
     !orderData.customer.email.includes('@') ||
-    orderData.customer.name === null ||
+    !orderData.customer.name ||
     orderData.customer.name.trim() === '' ||
-    orderData.customer.street === null ||
-    
+    !orderData.customer.street ||
     orderData.customer.street.trim() === '' ||
-    orderData.customer.postal === null ||
-    orderData.customer.postal.trim() === '' ||
-
-    orderData.customer.city === null ||
+    !orderData.customer['postal-code'] ||  // Changed from 'postal'
+    orderData.customer['postal-code'].trim() === '' ||
+    !orderData.customer.city ||
     orderData.customer.city.trim() === ''
   ) {
     return res.status(400).json({
-      message:
-        'Missing data: Email, name, street, postal code or city is missing.',
+      message: 'Missing data: Email, name, street, postal code or city is missing.',
     });
-  }
+  }  // Added missing closing brace
 
   const newOrder = {
     ...orderData,
@@ -61,6 +58,7 @@ app.post('/orders', async (req, res) => {
   await fs.writeFile('./data/orders.json', JSON.stringify(allOrders));
   res.status(201).json({ message: 'Order created!' });
 });
+
 
 app.use((req, res) => {
   if (req.method === 'OPTIONS') {

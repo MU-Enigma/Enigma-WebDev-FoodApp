@@ -9,7 +9,7 @@ function OrderForm({ onClose }) {
     name: "",
     email: "",
     street: "",
-    "postal-code": "",  // Changed from 'postal' to 'postal-code'
+    "postal-code": "",
     city: "",
   });
   const [showSuccess, setShowSuccess] = useState(false);
@@ -20,7 +20,12 @@ function OrderForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    
     const order = { items, customer };
+    
+    console.log('Sending order:', order); // Debug log
+
     try {
       const res = await fetch("http://localhost:3000/orders", {
         method: "POST",
@@ -28,47 +33,94 @@ function OrderForm({ onClose }) {
         body: JSON.stringify(order),
       });
 
+      const data = await res.json();
+      
       if (res.ok) {
         setShowSuccess(true);
         clearCart();
-        onClose();
+
+      } else {
+        console.error('Order failed:', data.message);
+        alert(`Order failed: ${data.message}`);
       }
     } catch (err) {
       console.error("Order failed:", err);
+      alert('Failed to place order. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  if (showSuccess) {
+    return <SuccessModal onClose={onClose} />;
+  }
 
   return (
     <form onSubmit={handleSubmit}>
       <h3>Checkout</h3>
       <div className="control">
         <label>Name</label>
-        <input name="name" onChange={handleChange} required />
+        <input 
+          name="name" 
+          value={customer.name}
+          onChange={handleChange} 
+          required 
+        />
       </div>
       <div className="control">
         <label>Email</label>
-        <input type="email" name="email" onChange={handleChange} required />
+        <input 
+          type="email" 
+          name="email" 
+          value={customer.email}
+          onChange={handleChange} 
+          required 
+        />
       </div>
       <div className="control">
         <label>Street</label>
-        <input name="street" onChange={handleChange} required />
+        <input 
+          name="street" 
+          value={customer.street}
+          onChange={handleChange} 
+          required 
+        />
       </div>
       <div className="control-row">
         <div className="control">
           <label>Postal Code</label>
-          <input name="postal" onChange={handleChange} required />
+          <input 
+            name="postal-code" 
+            value={customer["postal-code"]}
+            onChange={handleChange} 
+            required 
+          />
         </div>
         <div className="control">
           <label>City</label>
-          <input name="city" onChange={handleChange} required />
+          <input 
+            name="city" 
+            value={customer.city}
+            onChange={handleChange} 
+            required 
+          />
         </div>
       </div>
       <div className="modal-actions">
-        <button type="button" className="text-button" onClick={onClose}>
+        <button 
+          type="button" 
+          className="text-button" 
+          onClick={onClose}
+          disabled={isLoading}
+        >
           Cancel
         </button>
-        <button type="submit" className="button">
-          Place Order
+        <button 
+          type="submit" 
+          className="button"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Placing Order...' : 'Place Order'}
         </button>
       </div>
     </form>

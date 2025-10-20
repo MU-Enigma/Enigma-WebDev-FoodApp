@@ -160,82 +160,13 @@ h1 {
   animation: fade-in 0.3s ease-out;
 }
 
-/* Success Modal Styles */
-.success-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.success-modal {
-  /* REMOVE position: fixed */
-  position: relative; /* or just delete this line */
-  width: 600px;
-  min-height: 400px;
-  padding: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  background: linear-gradient(145deg, #f5f0e8 0%, #e4ddd4 100%);
-  border-radius: 16px;
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
-  z-index: 9999;
-}
-
-
-.success-modal__title {
-  font-size: 2rem;
-  color: #16a34a;
-  margin-bottom: 1rem;
-  text-align: center;
-  border-bottom: 2px solid #ffc404;
-  padding-bottom: 0.5rem;
-}
-
-.success-modal__body {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #1f1a09;
-  flex: 1;
-}
-
-.success-modal__body p {
-  margin-bottom: 1.5rem;
-}
-
-.success-modal__actions {
-  text-align: center;
-  margin-top: auto;
-}
-
-.success-modal__actions .button {
-  font-size: 1.1rem;
-  padding: 0.8rem 2.5rem;
-  background-color: #16a34a;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.success-modal__actions .button:hover {
-  background-color: #15803d;
-}
 
 /* Ensure proper z-index stacking */
 #main-header { z-index: 100; }
 .modal-backdrop { z-index: 9990; }
 .modal { z-index: 10000; }
 
-/* Success/Cart modal shared style */
+
 .modal {
   position: fixed;
   top: 50%;
@@ -534,10 +465,8 @@ h1 {
     padding: 1.5rem;
   }
 
-  .success-modal {
-    width: min(95vw, 680px);
-    padding: 1.5rem;
-  }
+
+
 }
 
 /* Optional: isolate your app root to control stacking contexts (safe helper) */
@@ -548,26 +477,4 @@ h1 {
 /* Optional: lock page scroll when a modal is open */
 body.modal-open {
   overflow: hidden;
-}
-/* Force Success Modal to full size and centered */
-.success-modal {
-  position: relative; /* make sure it's not fixed */
-  width: 600px !important;
-  min-height: 400px !important;
-  padding: 3rem !important;
-  overflow: visible !important;
-  max-width: 90vw;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.success-backdrop {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
