@@ -1,8 +1,10 @@
 import { useState, useContext } from "react";
 import { CartContext } from "./CartContext.jsx";
+import SuccessModal from "./components/SuccessModal.jsx";
 
 function OrderForm({ onClose }) {
   const { items, clearCart } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useState(false);
   const [customer, setCustomer] = useState({
     name: "",
     email: "",
@@ -10,6 +12,7 @@ function OrderForm({ onClose }) {
     "postal-code": "",  // Changed from 'postal' to 'postal-code'
     city: "",
   });
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e) => {
     setCustomer({ ...customer, [e.target.name]: e.target.value });
@@ -17,32 +20,21 @@ function OrderForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Wrap in 'order' object to match backend expectation
-    const orderData = { 
-      order: {
-        items, 
-        customer 
-      }
-    };
-    
+    const order = { items, customer };
     try {
       const res = await fetch("http://localhost:3000/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),  // Send wrapped order
+        body: JSON.stringify(order),
       });
+
       if (res.ok) {
-        alert("Order placed successfully!");
+        setShowSuccess(true);
         clearCart();
         onClose();
-      } else {
-        const error = await res.json();
-        alert(`Error: ${error.message}`);
       }
     } catch (err) {
       console.error("Order failed:", err);
-      alert("Failed to connect to server");
     }
   };
 
@@ -64,7 +56,7 @@ function OrderForm({ onClose }) {
       <div className="control-row">
         <div className="control">
           <label>Postal Code</label>
-          <input name="postal-code" onChange={handleChange} required />
+          <input name="postal" onChange={handleChange} required />
         </div>
         <div className="control">
           <label>City</label>
