@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
+import { UserProgressContext } from '../store/UserProgressContext';
 
-export default function Header({ onShowCart }) {
+export default function Header() {
   const { getTotalItems } = useContext(CartContext);
+  const { showCart } = useContext(UserProgressContext);
 
   const totalItems = getTotalItems();
 
@@ -13,7 +15,7 @@ export default function Header({ onShowCart }) {
         <h1>ReactFood</h1>
       </div>
       <nav>
-        <button className="text-button" onClick={onShowCart}>
+        <button className="text-button" onClick={showCart}>
           Cart ({totalItems})
         </button>
       </nav>

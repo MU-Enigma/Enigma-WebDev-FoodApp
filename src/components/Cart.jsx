@@ -1,22 +1,32 @@
 import { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
+import { UserProgressContext } from '../store/UserProgressContext';
 import CartItem from './CartItem';
 
-export default function Cart({ onClose, onOpenCheckout }) {
+export default function Cart() {
   const { items, getTotalPrice } = useContext(CartContext);
+  const { progress, hideCart, showCheckout } = useContext(UserProgressContext);
 
   const totalPrice = `$${getTotalPrice().toFixed(2)}`;
 
+  // Only show cart if progress is 'cart'
+  if (progress !== 'cart') {
+    return null;
+  }
+
+  function handleCheckout() {
+    hideCart();
+    showCheckout();
+  }
+
   return (
     <>
-      {/* Backdrop overlay */}
-      <div className="cart-backdrop" onClick={onClose}></div>
+      <div className="cart-backdrop" onClick={hideCart}></div>
       
-      {/* Side panel cart */}
       <div className="cart-side-panel">
         <div className="cart-header">
           <h2>Your Cart</h2>
-          <button className="cart-close" onClick={onClose}>✕</button>
+          <button className="cart-close" onClick={hideCart}>✕</button>
         </div>
 
         <div className="cart-content">
@@ -42,7 +52,7 @@ export default function Cart({ onClose, onOpenCheckout }) {
               <span className="cart-total-label">Total</span>
               <span className="cart-total-price">{totalPrice}</span>
             </div>
-            <button className="cart-checkout-btn" onClick={onOpenCheckout}>
+            <button className="cart-checkout-btn" onClick={handleCheckout}>
               Go to Checkout
             </button>
           </div>
