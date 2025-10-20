@@ -1,10 +1,10 @@
-import Header from './components/Header.jsx';
+import Nav from './components/Nav.jsx';
 import Meals from './components/Meals.jsx';
 
 function App() {
   return (
     <>
-      <Header />
+      <Nav />
       <main>
         <Meals />
       </main>

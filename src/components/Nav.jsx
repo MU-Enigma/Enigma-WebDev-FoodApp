@@ -1,4 +1,4 @@
-const Header = () => {
+const Nav = () => {
   return (
     <header id="main-header">
       <div id="title">
@@ -12,4 +12,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Nav;
