@@ -4,6 +4,7 @@ import SuccessModal from "./components/SuccessModal.jsx";
 
 function OrderForm({ onClose }) {
   const { items, clearCart } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useState(false);
   const [customer, setCustomer] = useState({
     name: "",
     email: "",
@@ -19,6 +20,7 @@ function OrderForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     const order = { items, customer };
 
     try {
@@ -36,6 +38,8 @@ function OrderForm({ onClose }) {
       }
     } catch (err) {
       console.error("Order failed:", err);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,32 +50,67 @@ function OrderForm({ onClose }) {
           <h3>Checkout</h3>
           <div className="control">
             <label>Name</label>
-            <input name="name" onChange={handleChange} required />
+            <input 
+              name="name" 
+              onChange={handleChange} 
+              required 
+              disabled={isLoading}
+            />
           </div>
           <div className="control">
             <label>Email</label>
-            <input type="email" name="email" onChange={handleChange} required />
+            <input 
+              type="email" 
+              name="email" 
+              onChange={handleChange} 
+              required 
+              disabled={isLoading}
+            />
           </div>
           <div className="control">
             <label>Street</label>
-            <input name="street" onChange={handleChange} required />
+            <input 
+              name="street" 
+              onChange={handleChange} 
+              required 
+              disabled={isLoading}
+            />
           </div>
           <div className="control-row">
             <div className="control">
               <label>Postal Code</label>
-              <input name="postal" onChange={handleChange} required />
+              <input 
+                name="postal" 
+                onChange={handleChange} 
+                required 
+                disabled={isLoading}
+              />
             </div>
             <div className="control">
               <label>City</label>
-              <input name="city" onChange={handleChange} required />
+              <input 
+                name="city" 
+                onChange={handleChange} 
+                required 
+                disabled={isLoading}
+              />
             </div>
           </div>
           <div className="modal-actions">
-            <button type="button" className="text-button" onClick={onClose}>
+            <button 
+              type="button" 
+              className="text-button" 
+              onClick={onClose}
+              disabled={isLoading}
+            >
               Cancel
             </button>
-            <button type="submit" className="button">
-              Place Order
+            <button 
+              type="submit" 
+              className="button"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Placing Order...' : 'Place Order'}
             </button>
           </div>
         </form>

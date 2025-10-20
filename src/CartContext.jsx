@@ -1,38 +1,47 @@
-import { createContext, useState } from "react";
+import { createContext, useReducer } from "react";
 
 export const CartContext = createContext();
 
-export function CartProvider({ children }) {
-  const [items, setItems] = useState([]);
+const initialState = [];
 
-  const addItem = (meal) => {
-    setItems((prev) => {
-      const existing = prev.find((item) => item.id === meal.id);
+function cartReducer(state, action) {
+  switch (action.type) {
+    case "ADD_ITEM": {
+      const existing = state.find((item) => item.id === action.item.id);
       if (existing) {
-        return prev.map((item) =>
-          item.id === meal.id
+        return state.map((item) =>
+          item.id === action.item.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       } else {
-        return [...prev, { ...meal, quantity: 1 }];
+        return [...state, { ...action.item, quantity: 1 }];
       }
-    });
-  };
+    }
 
-  const removeItem = (id) => {
-    setItems((prev) =>
-      prev
+    case "REMOVE_ITEM":
+      return state
         .map((item) =>
-          item.id === id
+          item.id === action.id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )
-        .filter((item) => item.quantity > 0)
-    );
-  };
+        .filter((item) => item.quantity > 0);
 
-  const clearCart = () => setItems([]);
+    case "CLEAR_CART":
+      return [];
+
+    default:
+      return state;
+  }
+}
+
+export function CartProvider({ children }) {
+  const [items, dispatch] = useReducer(cartReducer, initialState);
+
+  const addItem = (item) => dispatch({ type: "ADD_ITEM", item });
+  const removeItem = (id) => dispatch({ type: "REMOVE_ITEM", id });
+  const clearCart = () => dispatch({ type: "CLEAR_CART" });
 
   return (
     <CartContext.Provider value={{ items, addItem, removeItem, clearCart }}>
