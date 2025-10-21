@@ -20,7 +20,6 @@ export default function ParticlesWrapper() {
         root.render(React.createElement(Particles, {}));
       } catch (err) {
         // Fail silently — particles are decorative
-        // eslint-disable-next-line no-console
         console.warn('Failed to load particles:', err);
       }
     })();

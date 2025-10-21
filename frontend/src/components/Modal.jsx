@@ -18,7 +18,6 @@ export default function Modal({ children, open, onClose }) {
     } catch (err) {
       // Defensive: some environments may not support dialog.showModal or
       // calling it at certain times can throw. Log and continue.
-      // eslint-disable-next-line no-console
       console.warn('Modal dialog control failed:', err);
     }
 
