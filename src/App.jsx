@@ -26,17 +26,17 @@ function App() {
           disableRotation={false}
         />
       </div>
-      
+
       {/* Keep their Navbar */}
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Navbar />
       </div>
-      
+
       {/* Keep their Meals structure */}
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Meals />
       </main>
-      
+
       {/* ADD MY CART */}
       <Cart />
     </div>

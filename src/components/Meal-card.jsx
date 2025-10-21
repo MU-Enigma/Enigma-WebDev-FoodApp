@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { CartContext } from '../store/CartContext';
 import { formatPrice } from '../utils/cartUtils';
+import ShinyText from './shiny-text/ShinyText.jsx';
 
 const MealCard = ({ meal }) => {
   const { addItem } = useContext(CartContext);
@@ -16,7 +17,14 @@ const MealCard = ({ meal }) => {
       <article>
         <img src={`http://localhost:3000/${meal.image}`} alt={meal.name} />
         <div>
-          <h3>{meal.name}</h3>
+          <h3>
+            <ShinyText 
+              text={meal.name} 
+              disabled={false} 
+              speed={3} 
+              className="meal-name-shiny"
+            />
+          </h3>
           <p className="meal-item-price">{formattedPrice}</p>
           <p className="meal-item-description">{meal.description}</p>
         </div>
