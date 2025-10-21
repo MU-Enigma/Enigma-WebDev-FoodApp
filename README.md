@@ -542,7 +542,7 @@ The new Go-based architecture is production-ready, cost-efficient, and built for
 
 ## License
 
-This project is part of an educational assignment. See repository for specific license terms.
+This project is part of Enigma's Hacktober Fest, so not sure if this really needs to be licensed in particular.
 
 ## Support
 
@@ -551,3 +551,4 @@ For issues and questions:
 - Check existing documentation above
 - Review API examples in `services/go-api/`
 - Check Docker logs: `docker-compose logs -f`
+
