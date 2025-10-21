@@ -538,7 +538,7 @@ Enigma-WebDev-FoodApp-main/
 | **Deployment Time**     | 5-10 min       | 30 sec         | **10x faster**|
 | **Horizontal Scaling**  | Limited        | 10+ instances  | **Unlimited** |
 
-The new Go-based architecture is production-ready, cost-efficient, and built for scale, horizontal scaling in particular. The learning curve is steeper than your usual Node.js for backend, but the long-term benefits in performance, reliability, and maintainability make it the superior choice for serious deployment.
+The new Go-based architecture is production-ready, cost-efficient, and built for scale, horizontal scaling in particular. The learning curve is steeper than your usual Express.js for backend, but the long-term benefits in performance, reliability, and maintainability make it the superior choice for serious deployment.
 
 ## License
 
@@ -551,4 +551,5 @@ For issues and questions:
 - Check existing documentation above
 - Review API examples in `services/go-api/`
 - Check Docker logs: `docker-compose logs -f`
+
 
