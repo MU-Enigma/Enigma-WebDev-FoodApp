@@ -1,4 +1,4 @@
-export default function OrderSuccess({ orderId, onClose }) {
+export default function OrderSuccess({ onClose }) {
   return (
     <div className="order-success-popup">
       <h1 className="success-title">Success!</h1>
