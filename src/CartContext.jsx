@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -38,13 +38,46 @@ function cartReducer(state, action) {
 
 export function CartProvider({ children }) {
   const [items, dispatch] = useReducer(cartReducer, initialState);
+  const [loading, setLoading] = useState(false);
 
-  const addItem = (item) => dispatch({ type: "ADD_ITEM", item });
-  const removeItem = (id) => dispatch({ type: "REMOVE_ITEM", id });
-  const clearCart = () => dispatch({ type: "CLEAR_CART" });
+  const simulateDelay = (ms = 220) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+  const addItem = async (item) => {
+    setLoading(true);
+    try {
+      dispatch({ type: "ADD_ITEM", item });
+      // small delay so UI shows loading feedback reliably
+      await simulateDelay();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const removeItem = async (id) => {
+    setLoading(true);
+    try {
+      dispatch({ type: "REMOVE_ITEM", id });
+      await simulateDelay();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const clearCart = async () => {
+    setLoading(true);
+    try {
+      dispatch({ type: "CLEAR_CART" });
+      await simulateDelay();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <CartContext.Provider value={{ items, addItem, removeItem, clearCart }}>
+    <CartContext.Provider
+      value={{ items, addItem, removeItem, clearCart, loading }}
+    >
       {children}
     </CartContext.Provider>
   );
