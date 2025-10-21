@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#ffb347"/>
+      <stop offset="1" stop-color="#ffcc33"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="20" fill="#2c2306"/>
+  <circle cx="36" cy="36" r="24" fill="url(#g)" stroke="#fff" stroke-opacity="0.08" stroke-width="2"/>
+  <text x="68" y="76" font-family="Lato, Raleway, sans-serif" font-weight="700" font-size="22" fill="#ffc404">ReactFood</text>
+</svg>
