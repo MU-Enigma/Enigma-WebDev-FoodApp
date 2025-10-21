@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     steps:
       - uses: actions/checkout@v4
@@ -19,24 +19,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-
-      - name: Install root dependencies
-        run: npm ci
-
-      - name: Install backend dependencies
-        run: npm --prefix backend ci
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install frontend dependencies
-        run: npm --prefix frontend ci
+        run: npm ci
+        working-directory: ./frontend
 
       - name: Lint frontend
-        run: npm --prefix frontend run lint
+        run: npm run lint
+        working-directory: ./frontend
 
       - name: Build frontend
-        run: npm --prefix frontend run build
-
-      - name: Run backend tests (placeholder)
-        run: echo "No backend tests configured"
+        run: npm run build
+        working-directory: ./frontend
 
   deploy:
     runs-on: ubuntu-latest
