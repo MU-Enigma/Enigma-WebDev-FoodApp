@@ -542,7 +542,11 @@ The new Go-based architecture is production-ready, cost-efficient, and built for
 
 ## License
 
+<<<<<<< HEAD
 This project is part of an educational assignment. See repository for specific license terms.
+=======
+This project is part of Enigma's Hacktober Fest, so not sure if this really needs to be licensed in particular.
+>>>>>>> 1fa01a53b08c9c24c8d442486c08c03c0a66dcbd
 
 ## Support
 
@@ -551,3 +555,7 @@ For issues and questions:
 - Check existing documentation above
 - Review API examples in `services/go-api/`
 - Check Docker logs: `docker-compose logs -f`
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1fa01a53b08c9c24c8d442486c08c03c0a66dcbd
