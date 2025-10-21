@@ -1,7 +1,0 @@
-// Cart action types as constants
-export const CART_ACTIONS = {
-  ADD_ITEM: 'ADD_ITEM',
-  REMOVE_ITEM: 'REMOVE_ITEM',
-  CLEAR_CART: 'CLEAR_CART',
-  LOAD_CART: 'LOAD_CART',
-};

@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fooddb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@postgres:5432/fooddb?sslmode=disable"
+      REDIS_ADDR: "redis:6379"
+    ports:
+      - "8080:8080"
+
+volumes:
+  pgdata:
