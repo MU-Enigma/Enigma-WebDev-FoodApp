@@ -7,6 +7,8 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use('/images', express.static('public/images'));
+
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,31 +23,30 @@ app.get('/meals', async (req, res) => {
 });
 
 app.post('/orders', async (req, res) => {
-  const orderData = req.body.order;
+  const orderData = req.body;  // Changed from req.body.order
 
-  if (orderData === null || orderData.items === null || orderData.items.length === 0) {
+  if (!orderData || !orderData.items || orderData.items.length === 0) {
     return res
       .status(400)
       .json({ message: 'Missing data.' });
-  }
+  }  // Added missing closing brace
 
   if (
-    orderData.customer.email === null ||
+    !orderData.customer.email ||
     !orderData.customer.email.includes('@') ||
-    orderData.customer.name === null ||
+    !orderData.customer.name ||
     orderData.customer.name.trim() === '' ||
-    orderData.customer.street === null ||
+    !orderData.customer.street ||
     orderData.customer.street.trim() === '' ||
-    orderData.customer['postal-code'] === null ||
+    !orderData.customer['postal-code'] ||  // Changed from 'postal'
     orderData.customer['postal-code'].trim() === '' ||
-    orderData.customer.city === null ||
+    !orderData.customer.city ||
     orderData.customer.city.trim() === ''
   ) {
     return res.status(400).json({
-      message:
-        'Missing data: Email, name, street, postal code or city is missing.',
+      message: 'Missing data: Email, name, street, postal code or city is missing.',
     });
-  }
+  }  // Added missing closing brace
 
   const newOrder = {
     ...orderData,
@@ -58,6 +59,7 @@ app.post('/orders', async (req, res) => {
   res.status(201).json({ message: 'Order created!' });
 });
 
+
 app.use((req, res) => {
   if (req.method === 'OPTIONS') {
     return res.sendStatus(200);
@@ -66,4 +68,6 @@ app.use((req, res) => {
   res.status(404).json({ message: 'Not found' });
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+  console.log('✅ Server running on http://localhost:3000');
+});

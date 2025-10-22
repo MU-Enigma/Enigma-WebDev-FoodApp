@@ -1,44 +1,34 @@
-import Navbar from './components/Navbar.jsx';
-import Meals from './components/Meals.jsx';
-import Particles from './components/particles-bg/Particles.jsx';
-import Cart from './components/Cart'; // ADD THIS - My cart component
+import { useState, useContext } from "react";
+import { CartContext } from "./CartContext.jsx";
+import Meals from "./components/Meals.jsx";
+import CartModal from "./components/CartModal.jsx";
+import "./index.css";
+import logo from "./assets/logo.jpg";
 
 function App() {
+  const { items } = useContext(CartContext);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   return (
-    <div style={{ position: 'relative', minHeight: '100vh' }}>
-      {/* Keep their Particles background */}
-      <div style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: -10
-      }}>
-        <Particles
-          particleColors={['#ffc404', '#ffab04', '#d9e2f1']}
-          particleCount={100}
-          particleSpread={10}
-          speed={0.1}
-          particleBaseSize={200}
-          moveParticlesOnHover={true}
-          alphaParticles={false}
-          disableRotation={false}
-        />
-      </div>
+    <div>
+      {/* Header */}
+      <header id="main-header">
+        <div id="title">
+          <img src={logo} alt="Logo" /> {/* use the imported logo */}
+          <h1>FoodApp</h1>
+        </div>
+        <button className="button" onClick={() => setIsCartOpen(true)}>
+          🛒 Cart ({items.length})
+        </button>
+      </header>
 
-      {/* Keep their Navbar */}
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <Navbar />
-      </div>
-
-      {/* Keep their Meals structure */}
-      <main style={{ position: 'relative', zIndex: 1 }}>
+      {/* Meals Section */}
+      <main>
         <Meals />
       </main>
 
-      {/* ADD MY CART */}
-      <Cart />
+      {/* Cart Modal */}
+      {isCartOpen && <CartModal onClose={() => setIsCartOpen(false)} />}
     </div>
   );
 }
