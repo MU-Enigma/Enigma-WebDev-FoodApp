@@ -2,6 +2,7 @@ import Navbar from './components/Navbar.jsx';
 import Meals from './components/Meals.jsx';
 import Particles from './components/particles-bg/Particles.jsx';
 import Cart from './components/Cart'; // ADD THIS - My cart component
+import Toast from './components/Toast.jsx';
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
 
       {/* ADD MY CART */}
       <Cart />
+      
+      {/* Toast notifications */}
+      <Toast />
     </div>
   );
 }
