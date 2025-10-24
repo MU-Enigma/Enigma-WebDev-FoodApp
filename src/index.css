@@ -321,3 +321,148 @@ h1 {
     transform: translateY(0);
   }
 }
+/* Checkout Modal Styling */
+.cart {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-modal {
+  position: relative;
+  z-index: 1001;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.checkout {
+  background: linear-gradient(135deg, #1d1a16 0%, #2c2306 100%);
+  border: 2px solid #ffc404;
+  box-shadow: 0 8px 32px rgba(255, 196, 4, 0.3);
+}
+
+.checkout h2 {
+  color: #ffc404;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.checkout .modal-total {
+  background-color: #312c1d;
+  color: #ffc404;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  border: 1px solid #ffc404;
+}
+
+.checkout .control label {
+  color: #d9e2f1;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.checkout .control input {
+  background-color: #312c1d;
+  border: 2px solid #46443c;
+  color: #d9e2f1;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.checkout .control input:focus {
+  outline: none;
+  border-color: #ffc404;
+  box-shadow: 0 0 0 3px rgba(255, 196, 4, 0.1);
+}
+
+.checkout .control input::placeholder {
+  color: #888;
+}
+
+.checkout .modal-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.checkout .button-text {
+  background: transparent;
+  border: 2px solid #46443c;
+  color: #d9e2f1;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.checkout .button-text:hover {
+  border-color: #ffc404;
+  color: #ffc404;
+}
+
+.checkout .button {
+  background: linear-gradient(135deg, #ffc404 0%, #ffab04 100%);
+  border: none;
+  color: #1f1a09;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.checkout .button:hover {
+  background: linear-gradient(135deg, #ffab04 0%, #ff9504 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 196, 4, 0.4);
+}
+
+/* Enhanced backdrop */
+.cart-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .checkout {
+    margin: 1rem;
+    max-width: calc(100vw - 2rem);
+  }
+  
+  .checkout .modal-actions {
+    flex-direction: column;
+  }
+}
