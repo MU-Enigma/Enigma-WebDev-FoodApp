@@ -110,14 +110,14 @@ export function CartContextProvider({ children }) {
 
   function addItem(item) {
     dispatchCartAction({ type: CART_ACTIONS.ADD_ITEM, item });
-    showToast(`${item.name} added to cart!`, 'success');
+    showToast(`➕ ${item.name} added to cart!`, 'success');
   }
 
   function removeItem(id) {
     const item = cart.items.find(item => item.id === id);
     dispatchCartAction({ type: CART_ACTIONS.REMOVE_ITEM, id });
     if (item) {
-      showToast(`${item.name} removed from cart!`, 'error');
+      showToast(`➖ ${item.name} removed from cart!`, 'error');
     }
   }
 
