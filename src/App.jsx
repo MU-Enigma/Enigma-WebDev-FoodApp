@@ -5,6 +5,7 @@ import Meals from './components/Meals.jsx';
 import Particles from './components/particles-bg/Particles.jsx';
 import Cart from './components/Cart';
 import Checkout from './components/Checkout.jsx';
+import Success from './components/Success.jsx';
 
 function App() {
   return (
@@ -42,9 +43,10 @@ function App() {
             <Meals />
           </main>
 
-          {/* Cart and Checkout components */}
+          {/* Cart, Checkout and Success components */}
           <Cart />
           <Checkout />
+          <Success />
         </div>
       </UserProgressContextProvider>
     </CartContextProvider>
