@@ -327,31 +327,55 @@ h1 {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 12px 20px;
-  border-radius: 6px;
+  padding: 16px 24px;
+  border-radius: 8px;
   color: white;
   font-weight: bold;
-  z-index: 1000;
-  animation: slideIn 0.3s ease-out;
+  z-index: 1002;
+  animation: dropDown 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   text-align: center;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-width: 250px;
+}
+
+.toast.exiting {
+  animation: slideUp 0.3s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
 }
 
 .toast.success {
-  background-color: #4caf50;
+  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  border: 2px solid #66bb6a;
 }
 
 .toast.error {
-  background-color: #f44336;
+  background: linear-gradient(135deg, #f44336 0%, #e53935 100%);
+  border: 2px solid #ef5350;
 }
 
-@keyframes slideIn {
-  from {
-    top: -100px;
+@keyframes dropDown {
+  0% {
+    transform: translateX(-50%) translateY(-100px);
     opacity: 0;
   }
-  to {
-    top: 20px;
+  10% {
+    transform: translateX(-50%) translateY(-80px);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
     opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-100px);
+    opacity: 0;
   }
 }
 
