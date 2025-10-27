@@ -3,7 +3,8 @@ import { UserProgressContextProvider } from './store/UserProgressContext.jsx';
 import Navbar from './components/Navbar.jsx';
 import Meals from './components/Meals.jsx';
 import Particles from './components/particles-bg/Particles.jsx';
-import Cart from './components/Cart';
+import Cart from './components/Cart'; // ADD THIS - My cart component
+import Toast from './components/Toast.jsx';
 import Checkout from './components/Checkout.jsx';
 import Success from './components/Success.jsx';
 
@@ -46,6 +47,8 @@ function App() {
           {/* Cart, Checkout and Success components */}
           <Cart />
           <Checkout />
+          {/* Toast notifications */}
+          <Toast />
           <Success />
         </div>
       </UserProgressContextProvider>

@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from 'react';
+import { createContext, useReducer, useEffect, useState } from 'react';
 import { CART_ACTIONS } from '../constants/cartActions';
 
 // Create Context
@@ -9,6 +9,7 @@ export const CartContext = createContext({
   clearCart: () => {},
   getTotalPrice: () => 0,
   getTotalItems: () => 0,
+  toast: null,
 });
 
 // Reducer function to manage cart state
@@ -76,6 +77,12 @@ function cartReducer(state, action) {
 // CartContextProvider Component
 export function CartContextProvider({ children }) {
   const [cart, dispatchCartAction] = useReducer(cartReducer, { items: [] });
+  const [toast, setToast] = useState(null);
+
+  function showToast(message, type) {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3000);
+  }
 
   // Load cart from localStorage on mount
   useEffect(() => {
@@ -103,10 +110,15 @@ export function CartContextProvider({ children }) {
 
   function addItem(item) {
     dispatchCartAction({ type: CART_ACTIONS.ADD_ITEM, item });
+    showToast(`➕ ${item.name} added to cart!`, 'success');
   }
 
   function removeItem(id) {
+    const item = cart.items.find(item => item.id === id);
     dispatchCartAction({ type: CART_ACTIONS.REMOVE_ITEM, id });
+    if (item) {
+      showToast(`➖ ${item.name} removed from cart!`, 'error');
+    }
   }
 
   function clearCart() {
@@ -132,6 +144,7 @@ export function CartContextProvider({ children }) {
     clearCart,
     getTotalPrice,
     getTotalItems,
+    toast,
   };
 
   return (
