@@ -352,6 +352,9 @@ h1 {
   to {
     top: 20px;
     opacity: 1;
+  }
+}
+
 /* Checkout Modal Styling */
 .cart {
   position: fixed;
