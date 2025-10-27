@@ -13,7 +13,6 @@ const Meals = () => {
         const response = await fetch("http://localhost:3000/meals");
 
         if (!response.ok) {
-          // A 404(or anything similar) response is truthy, so check .ok to catch HTTP errors.
           throw new Error("Failed to fetch meals.");
         }
 
@@ -28,22 +27,35 @@ const Meals = () => {
     fetchMeals();
   }, []);
 
-  if (isLoading) {
-    return <p className="center">Fetching meals...</p>;
-  }
+if (isLoading) {
+  return (
+    <div className="center spinner-container">
+      <div className="spinner"></div>
+      <p style={{ color: "#bfa94a", marginTop: "0.5rem" }}>Fetching meals...</p>
+    </div>
+  );
+}
+
+
 
   if (error) {
     return (
-      <div className="error">
-        <h2>Error!</h2>
+      <div className="center error">
+        <h2>Oops! Could not load meals.</h2>
+        <p>{error}</p>
       </div>
     );
   }
+
+  if (loadedMeals.length === 0) {
+    return <p className="center">No meals available right now 😞</p>;
+  }
+
   return (
     <ul id="meals">
       {loadedMeals.map((meal) => (
-              <MealCard key={meal.id} meal={meal} />
-            ))}
+        <MealCard key={meal.id} meal={meal} />
+      ))}
     </ul>
   );
 };
