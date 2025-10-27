@@ -4,7 +4,7 @@ import { UserProgressContext } from '../store/UserProgressContext';
 
 export default function Checkout() {
   const { getTotalPrice, clearCart } = useContext(CartContext);
-  const { progress, hideCheckout } = useContext(UserProgressContext);
+  const { progress, hideCheckout, showSuccess } = useContext(UserProgressContext);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -22,8 +22,7 @@ export default function Checkout() {
     // Handle order submission here
     console.log('Order submitted:', formData);
     clearCart();
-    hideCheckout();
-    // You could add success message here
+    showSuccess();
   }
 
   function handleInputChange(event) {

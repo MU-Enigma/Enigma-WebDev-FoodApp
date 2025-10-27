@@ -6,6 +6,7 @@ import Particles from './components/particles-bg/Particles.jsx';
 import Cart from './components/Cart'; // ADD THIS - My cart component
 import Toast from './components/Toast.jsx';
 import Checkout from './components/Checkout.jsx';
+import Success from './components/Success.jsx';
 
 function App() {
   return (
@@ -43,11 +44,12 @@ function App() {
             <Meals />
           </main>
 
-          {/* Cart and Checkout components */}
+          {/* Cart, Checkout and Success components */}
           <Cart />
           <Checkout />
           {/* Toast notifications */}
           <Toast />
+          <Success />
         </div>
       </UserProgressContextProvider>
     </CartContextProvider>

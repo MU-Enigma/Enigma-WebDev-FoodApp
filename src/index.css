@@ -499,4 +499,73 @@ h1 {
   .checkout .modal-actions {
     flex-direction: column;
   }
+}/* 
+Success Modal Styling */
+.success-modal {
+  background: linear-gradient(135deg, #1d1a16 0%, #2c2306 100%);
+  border: 2px solid #ffc404;
+  box-shadow: 0 8px 32px rgba(255, 196, 4, 0.3);
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.success-modal h2 {
+  color: #ffc404;
+  font-family: 'Lato', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.success-modal p {
+  color: #d9e2f1;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.success-modal .modal-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.success-modal .button {
+  background: linear-gradient(135deg, #ffc404 0%, #ffab04 100%);
+  border: none;
+  color: #1f1a09;
+  padding: 1rem 3rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.success-modal .button:hover {
+  background: linear-gradient(135deg, #ffab04 0%, #ff9504 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 196, 4, 0.4);
+}
+
+/* Animation for success modal */
+.success-modal {
+  animation: successSlideIn 0.4s ease-out;
+}
+
+@keyframes successSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
